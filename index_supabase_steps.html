@@ -2,34 +2,377 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Détection Talents Foot Bénin</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f3f6f5;color:#17201c}
-header{background:#087a46;color:white;text-align:center;padding:30px 18px 26px}header h1{margin:0 0 8px;font-size:32px}header p{margin:0;font-size:17px}
-.steps{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:24px auto 0;max-width:900px}
-.step{padding:9px 15px;border-radius:30px;background:#dce8e2;color:#53615a;font-weight:bold;font-size:14px}.step.active{background:#087a46;color:white}
-main{width:min(900px,calc(100% - 30px));margin:28px auto 50px}.card{background:white;border-radius:18px;padding:28px;box-shadow:0 8px 25px rgba(0,0,0,.08);margin-bottom:20px}
-.card h2{color:#087a46;margin-top:0;font-size:25px}.hidden{display:none!important}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
-.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}label{font-weight:bold;color:#26332d}
-input,select{width:100%;padding:13px 14px;border:1px solid #c9d5cf;border-radius:10px;font-size:15px;outline:none;background:white}
-input:focus,select:focus{border-color:#087a46;box-shadow:0 0 0 3px rgba(8,122,70,.10)}
-.payment-box{border:2px solid #087a46;border-radius:15px;padding:20px;background:#eefaf4;margin-bottom:20px}.payment-box h3{margin-top:0;color:#087a46}
-.payment-line{margin:9px 0;font-size:17px}.important{background:#fff5d9;border-left:5px solid #f0ad00;padding:16px;border-radius:8px;line-height:1.55;margin-top:18px}
-.upload-box{border:2px dashed #087a46;border-radius:15px;padding:25px;text-align:center;background:#f5fffa;margin-top:18px}.upload-icon{font-size:46px;margin-bottom:8px}
-.upload-box input[type=file]{max-width:100%;border:none;padding:10px;margin-top:10px}#preview{display:none;max-width:100%;max-height:330px;margin:18px auto 0;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.12)}
-.buttons{display:flex;justify-content:space-between;gap:12px;margin-top:24px}button{border:none;border-radius:10px;padding:14px 22px;font-size:16px;font-weight:bold;cursor:pointer}
-.btn-primary{background:#087a46;color:white;margin-left:auto}.btn-primary:hover{background:#06663b}.btn-secondary{background:#e5ebe8;color:#26332d}.btn-secondary:hover{background:#d8e1dc}
-.success{text-align:center;padding:20px 5px}.success-icon{font-size:65px}.success h2{color:#087a46;font-size:29px}
-.status{display:inline-block;padding:10px 15px;border-radius:30px;background:#fff1c7;color:#765500;font-weight:bold;margin:8px 0 18px}
-.note{color:#5d6963;line-height:1.6}.error{color:#b42318;font-size:14px;margin-top:7px;display:none}footer{text-align:center;color:#6c7771;padding:0 20px 30px;font-size:13px}
-@media(max-width:650px){header h1{font-size:24px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.card{padding:20px}.buttons{flex-direction:column}.btn-primary{margin-left:0}button{width:100%}}
+*{box-sizing:border-box}
+
+html{
+  width:100%;
+  overflow-x:hidden;
+}
+
+body{
+  margin:0;
+  width:100%;
+  overflow-x:hidden;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f3f6f5;
+  color:#17201c;
+  -webkit-text-size-adjust:100%;
+}
+
+header{
+  background:#087a46;
+  color:white;
+  text-align:center;
+  padding:30px 18px 26px;
+}
+
+header h1{
+  margin:0 0 8px;
+  font-size:32px;
+}
+
+header p{
+  margin:0;
+  font-size:17px;
+}
+
+.steps{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:24px auto 0;
+  max-width:900px;
+}
+
+.step{
+  padding:9px 15px;
+  border-radius:30px;
+  background:#dce8e2;
+  color:#53615a;
+  font-weight:bold;
+  font-size:14px;
+}
+
+.step.active{
+  background:#087a46;
+  color:white;
+}
+
+main{
+  width:min(900px,calc(100% - 30px));
+  margin:28px auto 50px;
+}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:28px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+  margin-bottom:20px;
+}
+
+.card h2{
+  color:#087a46;
+  margin-top:0;
+  font-size:25px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:17px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+label{
+  font-weight:bold;
+  color:#26332d;
+}
+
+input,
+select{
+  width:100%;
+  min-height:48px;
+  padding:13px 14px;
+  border:1px solid #c9d5cf;
+  border-radius:10px;
+  font-size:16px;
+  outline:none;
+  background:white;
+  -webkit-appearance:none;
+  appearance:none;
+}
+
+input:focus,
+select:focus{
+  border-color:#087a46;
+  box-shadow:0 0 0 3px rgba(8,122,70,.10);
+}
+
+input[type="date"]{
+  -webkit-appearance:auto;
+  appearance:auto;
+}
+
+.payment-box{
+  border:2px solid #087a46;
+  border-radius:15px;
+  padding:20px;
+  background:#eefaf4;
+  margin-bottom:20px;
+}
+
+.payment-box h3{
+  margin-top:0;
+  color:#087a46;
+}
+
+.payment-line{
+  margin:9px 0;
+  font-size:17px;
+}
+
+.important{
+  background:#fff5d9;
+  border-left:5px solid #f0ad00;
+  padding:16px;
+  border-radius:8px;
+  line-height:1.55;
+  margin-top:18px;
+}
+
+.upload-box{
+  border:2px dashed #087a46;
+  border-radius:15px;
+  padding:25px;
+  text-align:center;
+  background:#f5fffa;
+  margin-top:18px;
+}
+
+.upload-icon{
+  font-size:46px;
+  margin-bottom:8px;
+}
+
+.upload-box input[type=file]{
+  width:100%;
+  max-width:100%;
+  border:none;
+  padding:10px;
+  margin-top:10px;
+  min-height:48px;
+}
+
+#preview{
+  display:none;
+  max-width:100%;
+  max-height:330px;
+  margin:18px auto 0;
+  border-radius:12px;
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+  object-fit:contain;
+}
+
+.buttons{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:24px;
+}
+
+button{
+  border:none;
+  border-radius:10px;
+  padding:14px 22px;
+  min-height:50px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.btn-primary{
+  background:#087a46;
+  color:white;
+  margin-left:auto;
+}
+
+.btn-primary:hover{
+  background:#06663b;
+}
+
+.btn-secondary{
+  background:#e5ebe8;
+  color:#26332d;
+}
+
+.btn-secondary:hover{
+  background:#d8e1dc;
+}
+
+.success{
+  text-align:center;
+  padding:20px 5px;
+}
+
+.success-icon{
+  font-size:65px;
+}
+
+.success h2{
+  color:#087a46;
+  font-size:29px;
+}
+
+.status{
+  display:inline-block;
+  padding:10px 15px;
+  border-radius:30px;
+  background:#fff1c7;
+  color:#765500;
+  font-weight:bold;
+  margin:8px 0 18px;
+}
+
+.note{
+  color:#5d6963;
+  line-height:1.6;
+}
+
+.error{
+  color:#b42318;
+  font-size:14px;
+  margin-top:7px;
+  display:none;
+  line-height:1.5;
+}
+
+footer{
+  text-align:center;
+  color:#6c7771;
+  padding:0 20px 30px;
+  font-size:13px;
+}
+
+@media(max-width:650px){
+
+  header{
+    padding:24px 14px 22px;
+  }
+
+  header h1{
+    font-size:24px;
+    line-height:1.25;
+  }
+
+  header p{
+    font-size:15px;
+    line-height:1.4;
+  }
+
+  .steps{
+    gap:6px;
+    margin-top:18px;
+  }
+
+  .step{
+    padding:8px 10px;
+    font-size:12px;
+  }
+
+  main{
+    width:calc(100% - 20px);
+    margin:18px auto 35px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+
+  .card{
+    padding:18px;
+    border-radius:15px;
+  }
+
+  .card h2{
+    font-size:22px;
+    line-height:1.3;
+  }
+
+  .payment-line{
+    font-size:16px;
+  }
+
+  .important{
+    font-size:14px;
+  }
+
+  .buttons{
+    flex-direction:column;
+  }
+
+  .btn-primary{
+    margin-left:0;
+  }
+
+  button{
+    width:100%;
+  }
+}
+
+@media(max-width:380px){
+
+  .step{
+    font-size:11px;
+    padding:7px 8px;
+  }
+
+  .card{
+    padding:15px;
+  }
+
+  header h1{
+    font-size:21px;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <header>
 <h1>⚽ DÉTECTION TALENTS FOOT BÉNIN</h1>
 <p>Inscription pour la détection des jeunes talents</p>
+
 <div class="steps">
 <div class="step active" id="stepIndicator1">1. Informations</div>
 <div class="step" id="stepIndicator2">2. Paiement + preuve</div>
@@ -38,89 +381,622 @@ input:focus,select:focus{border-color:#087a46;box-shadow:0 0 0 3px rgba(8,122,70
 </header>
 
 <main>
+
+<!-- ÉTAPE 1 -->
 <section class="card" id="step1">
+
 <h2>👤 Étape 1 — Informations du joueur</h2>
+
 <form id="playerForm">
+
 <div class="grid">
-<div class="field"><label for="category">Catégorie *</label><select id="category" required><option value="">Sélectionner</option><option value="U17">U17</option><option value="U20">U20</option></select></div>
-<div class="field"><label for="fullName">Nom et prénom *</label><input id="fullName" type="text" placeholder="Ex : Jean Dupont" required></div>
-<div class="field"><label for="birthDate">Date de naissance *</label><input id="birthDate" type="date" required></div>
-<div class="field"><label for="phone">Numéro WhatsApp *</label><input id="phone" type="tel" placeholder="Ex : 97 XX XX XX" required></div>
-<div class="field"><label for="email">Adresse Gmail *</label><input id="email" type="email" placeholder="exemple@gmail.com" required></div>
-<div class="field"><label for="position">Poste *</label><select id="position" required><option value="">Sélectionner</option><option>Gardien</option><option>Défenseur central</option><option>Latéral droit</option><option>Latéral gauche</option><option>Milieu défensif</option><option>Milieu central</option><option>Milieu offensif</option><option>Ailier droit</option><option>Ailier gauche</option><option>Attaquant</option></select></div>
-<div class="field"><label for="foot">Pied fort *</label><select id="foot" required><option value="">Sélectionner</option><option>Droit</option><option>Gauche</option><option>Les deux</option></select></div>
-<div class="field"><label for="club">Club actuel</label><input id="club" type="text" placeholder="Nom du club (facultatif)"></div>
+
+<div class="field">
+<label for="category">Catégorie *</label>
+
+<select id="category" required>
+<option value="">Sélectionner</option>
+<option value="U17">U17</option>
+<option value="U20">U20</option>
+</select>
 </div>
-<div class="buttons"><button type="submit" class="btn-primary">Continuer →</button></div>
+
+<div class="field">
+<label for="fullName">Nom et prénom *</label>
+<input
+id="fullName"
+type="text"
+placeholder="Ex : Jean Dupont"
+autocomplete="name"
+required>
+</div>
+
+<div class="field">
+<label for="birthDate">Date de naissance *</label>
+<input
+id="birthDate"
+type="date"
+required>
+</div>
+
+<div class="field">
+<label for="phone">Numéro WhatsApp *</label>
+<input
+id="phone"
+type="tel"
+placeholder="Ex : 97 XX XX XX"
+inputmode="tel"
+autocomplete="tel"
+required>
+</div>
+
+<div class="field">
+<label for="email">Adresse Gmail *</label>
+<input
+id="email"
+type="email"
+placeholder="exemple@gmail.com"
+inputmode="email"
+autocomplete="email"
+required>
+</div>
+
+<div class="field">
+<label for="position">Poste *</label>
+
+<select id="position" required>
+<option value="">Sélectionner</option>
+<option>Gardien</option>
+<option>Défenseur central</option>
+<option>Latéral droit</option>
+<option>Latéral gauche</option>
+<option>Milieu défensif</option>
+<option>Milieu central</option>
+<option>Milieu offensif</option>
+<option>Ailier droit</option>
+<option>Ailier gauche</option>
+<option>Attaquant</option>
+</select>
+</div>
+
+<div class="field">
+<label for="foot">Pied fort *</label>
+
+<select id="foot" required>
+<option value="">Sélectionner</option>
+<option>Droit</option>
+<option>Gauche</option>
+<option>Les deux</option>
+</select>
+</div>
+
+<div class="field">
+<label for="club">Club actuel</label>
+<input
+id="club"
+type="text"
+placeholder="Nom du club (facultatif)"
+autocomplete="organization">
+</div>
+
+</div>
+
+<div class="buttons">
+<button type="submit" class="btn-primary">
+Continuer →
+</button>
+</div>
+
 </form>
 </section>
 
+
+<!-- ÉTAPE 2 -->
 <section class="card hidden" id="step2">
+
 <h2>💳 Étape 2 — Paiement + preuve</h2>
+
 <div class="payment-box">
+
 <h3>Paiement manuel Celtiis</h3>
-<div class="payment-line"><strong>Montant :</strong> 1 000 FCFA</div>
-<div class="payment-line"><strong>Numéro :</strong> 93699343</div>
-<div class="payment-line"><strong>Nom du compte :</strong> Celtics</div>
-<div class="important"><strong>⚠️ Important :</strong><br>Effectuez d'abord le transfert de <strong>1 000 FCFA</strong> vers le numéro <strong>Celtiis 93699343</strong>.<br><br>Après le paiement, prenez une <strong>capture d'écran de la confirmation du transfert</strong> et joignez-la ci-dessous.<br><br><strong>La validation est faite manuellement.</strong> Une capture d'écran seule ne signifie pas que le paiement est automatiquement validé.</div>
+
+<div class="payment-line">
+<strong>Montant :</strong> 1 000 FCFA
 </div>
+
+<div class="payment-line">
+<strong>Numéro :</strong> 93699343
+</div>
+
+<div class="payment-line">
+<strong>Nom du compte :</strong> Celtics
+</div>
+
+<div class="important">
+<strong>⚠️ Important :</strong><br>
+
+Effectuez d'abord le transfert de
+<strong>1 000 FCFA</strong>
+vers le numéro
+<strong>Celtiis 93699343</strong>.
+
+<br><br>
+
+Après le paiement, prenez une
+<strong>capture d'écran de la confirmation du transfert</strong>
+et joignez-la ci-dessous.
+
+<br><br>
+
+<strong>
+La validation est faite manuellement.
+</strong>
+
+Une capture d'écran seule ne signifie pas que le paiement est automatiquement validé.
+</div>
+
+</div>
+
 <h3>📸 Preuve du paiement</h3>
-<p>Ajoutez ici la capture d'écran qui confirme votre transfert de 1 000 FCFA.</p>
+
+<p>
+Ajoutez ici la capture d'écran qui confirme votre transfert de 1 000 FCFA.
+</p>
+
 <div class="upload-box">
-<div class="upload-icon">📷</div><strong>Ajouter la capture du paiement</strong><br><span>Format conseillé : JPG, PNG ou WEBP</span>
-<input type="file" id="paymentProof" accept="image/jpeg,image/png,image/webp">
-<div class="error" id="fileError">Veuillez sélectionner une image de preuve du paiement.</div>
-<img id="preview" alt="Aperçu de la preuve de paiement">
+
+<div class="upload-icon">📷</div>
+
+<strong>
+Ajouter la capture du paiement
+</strong>
+
+<br>
+
+<span>
+Formats acceptés : JPG, JPEG, PNG, WEBP, HEIC ou HEIF
+</span>
+
+<input
+type="file"
+id="paymentProof"
+accept="image/*,.jpg,.jpeg,.png,.webp,.heic,.heif">
+
+<div class="error" id="fileError">
+Veuillez sélectionner une image de preuve du paiement.
 </div>
-<div class="buttons"><button type="button" class="btn-secondary" id="backToStep1">← Retour</button><button type="button" class="btn-primary" id="submitRegistration">Envoyer mon inscription →</button></div>
+
+<img
+id="preview"
+alt="Aperçu de la preuve de paiement">
+
+</div>
+
+<div class="buttons">
+
+<button
+type="button"
+class="btn-secondary"
+id="backToStep1">
+← Retour
+</button>
+
+<button
+type="button"
+class="btn-primary"
+id="submitRegistration">
+Envoyer mon inscription →
+</button>
+
+</div>
+
 </section>
 
+
+<!-- ÉTAPE 3 -->
 <section class="card hidden" id="step3">
-<div class="success"><div class="success-icon">✅</div><h2>Inscription envoyée avec succès !</h2><div class="status">⏳ En attente de validation</div>
-<p class="note">Votre dossier a bien été préparé et votre preuve de paiement a été jointe à l'inscription.<br><br>La preuve sera vérifiée manuellement par l'équipe. Vous serez contacté après la vérification.</p></div>
+
+<div class="success">
+
+<div class="success-icon">✅</div>
+
+<h2>
+Inscription envoyée avec succès !
+</h2>
+
+<div class="status">
+⏳ En attente de validation
+</div>
+
+<p class="note">
+
+Votre dossier a bien été préparé et votre preuve de paiement a été jointe à l'inscription.
+
+<br><br>
+
+La preuve sera vérifiée manuellement par l'équipe.
+
+Vous serez contacté après la vérification.
+
+</p>
+
+</div>
+
 </section>
+
 </main>
-<footer>Détection Talents Foot Bénin — Formulaire d'inscription</footer>
+
+<footer>
+Détection Talents Foot Bénin — Formulaire d'inscription
+</footer>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-const client = window.supabase.createClient("https://kbzgjkcmavdsrzsywija.supabase.co","sb_publishable_zlquplMExlit4un_VzjyDw_xy-ExAjm");
-const step1=document.getElementById("step1"),step2=document.getElementById("step2"),step3=document.getElementById("step3");
-const indicator1=document.getElementById("stepIndicator1"),indicator2=document.getElementById("stepIndicator2"),indicator3=document.getElementById("stepIndicator3");
-const playerForm=document.getElementById("playerForm"),paymentProof=document.getElementById("paymentProof"),preview=document.getElementById("preview"),fileError=document.getElementById("fileError");
 
+const client = window.supabase.createClient(
+"https://kbzgjkcmavdsrzsywija.supabase.co",
+"sb_publishable_zlquplMExlit4un_VzjyDw_xy-ExAjm"
+);
+
+const step1 = document.getElementById("step1");
+const step2 = document.getElementById("step2");
+const step3 = document.getElementById("step3");
+
+const indicator1 = document.getElementById("stepIndicator1");
+const indicator2 = document.getElementById("stepIndicator2");
+const indicator3 = document.getElementById("stepIndicator3");
+
+const playerForm = document.getElementById("playerForm");
+const paymentProof = document.getElementById("paymentProof");
+const preview = document.getElementById("preview");
+const fileError = document.getElementById("fileError");
+
+
+// ÉTAT ACTUEL DU FORMULAIRE
+let currentStep = 1;
+
+
+// AFFICHAGE DES ÉTAPES
 function showStep(n){
-[step1,step2,step3].forEach(x=>x.classList.add("hidden"));
-[indicator1,indicator2,indicator3].forEach(x=>x.classList.remove("active"));
-if(n===1){step1.classList.remove("hidden");indicator1.classList.add("active")}
-if(n===2){step2.classList.remove("hidden");indicator2.classList.add("active")}
-if(n===3){step3.classList.remove("hidden");indicator3.classList.add("active")}
-window.scrollTo({top:0,behavior:"smooth"});
-}
-playerForm.addEventListener("submit",e=>{e.preventDefault();if(!playerForm.checkValidity()){playerForm.reportValidity();return}showStep(2)});
-document.getElementById("backToStep1").onclick=()=>showStep(1);
 
-paymentProof.addEventListener("change",()=>{
-const f=paymentProof.files[0]; if(!f){preview.style.display="none";return}
-if(!f.type.startsWith("image/")){fileError.textContent="Veuillez sélectionner une image.";fileError.style.display="block";paymentProof.value="";preview.style.display="none";return}
-fileError.style.display="none";const reader=new FileReader();reader.onload=e=>{preview.src=e.target.result;preview.style.display="block"};reader.readAsDataURL(f);
+  currentStep = n;
+
+  [step1,step2,step3].forEach(function(x){
+    x.classList.add("hidden");
+  });
+
+  [indicator1,indicator2,indicator3].forEach(function(x){
+    x.classList.remove("active");
+  });
+
+  if(n === 1){
+    step1.classList.remove("hidden");
+    indicator1.classList.add("active");
+  }
+
+  if(n === 2){
+    step2.classList.remove("hidden");
+    indicator2.classList.add("active");
+  }
+
+  if(n === 3){
+    step3.classList.remove("hidden");
+    indicator3.classList.add("active");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+// ÉTAPE 1 → ÉTAPE 2
+playerForm.addEventListener("submit",function(e){
+
+  e.preventDefault();
+
+  if(!playerForm.checkValidity()){
+
+    playerForm.reportValidity();
+
+    return;
+  }
+
+  showStep(2);
 });
 
-document.getElementById("submitRegistration").onclick=async()=>{
-const btn=document.getElementById("submitRegistration"),f=paymentProof.files[0];
-if(!f){fileError.textContent="Veuillez ajouter la capture d'écran de votre paiement.";fileError.style.display="block";return}
-if(f.size>5*1024*1024){fileError.textContent="La capture est trop grande. Maximum 5 Mo.";fileError.style.display="block";return}
-btn.disabled=true;btn.textContent="Envoi en cours...";
-try{
-let s=await client.auth.getSession();
-if(!s.data.session){let a=await client.auth.signInAnonymously();if(a.error)throw a.error}
-const id=crypto.randomUUID(),ext=(f.name.split(".").pop()||"jpg").toLowerCase(),path=id+"/preuve."+ext;
-let up=await client.storage.from("payment-proofs").upload(path,f,{contentType:f.type,upsert:false});if(up.error)throw up.error;
-const dossier={id,category:document.getElementById("category").value,full_name:document.getElementById("fullName").value.trim(),birth_date:document.getElementById("birthDate").value,phone:document.getElementById("phone").value.trim(),email:document.getElementById("email").value.trim(),position:document.getElementById("position").value,foot:document.getElementById("foot").value,club:document.getElementById("club").value.trim()||null,payment_amount:1000,payment_number:"93699343",payment_account:"Celtics",proof_path:path,status:"En attente"};
-let ins=await client.from("dossiers").insert(dossier);if(ins.error){await client.storage.from("payment-proofs").remove([path]);throw ins.error}
-showStep(3);
-}catch(e){fileError.textContent="Erreur : "+e.message;fileError.style.display="block";btn.disabled=false;btn.textContent="Envoyer mon inscription →"}
+
+// RETOUR ÉTAPE 2 → ÉTAPE 1
+document.getElementById("backToStep1").onclick=function(){
+
+  showStep(1);
+
 };
+
+
+// SÉLECTION DE LA PREUVE
+paymentProof.addEventListener("change",function(){
+
+  const f = paymentProof.files[0];
+
+  fileError.style.display = "none";
+  preview.style.display = "none";
+
+  if(!f){
+    return;
+  }
+
+
+  // Vérification du type
+  const allowedTypes = [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "image/heic",
+    "image/heif"
+  ];
+
+  const allowedExtensions = [
+    "jpg",
+    "jpeg",
+    "png",
+    "webp",
+    "heic",
+    "heif"
+  ];
+
+  const extension =
+    (f.name.split(".").pop() || "")
+    .toLowerCase();
+
+  const validType =
+    f.type.startsWith("image/") ||
+    allowedTypes.includes(f.type) ||
+    allowedExtensions.includes(extension);
+
+
+  if(!validType){
+
+    fileError.textContent =
+      "Veuillez sélectionner une capture d'écran ou une image.";
+
+    fileError.style.display = "block";
+
+    paymentProof.value = "";
+
+    return;
+  }
+
+
+  // Taille maximale : 10 Mo
+  if(f.size > 10 * 1024 * 1024){
+
+    fileError.textContent =
+      "La capture est trop grande. Maximum 10 Mo.";
+
+    fileError.style.display = "block";
+
+    paymentProof.value = "";
+
+    return;
+  }
+
+
+  // Aperçu
+  // Certains fichiers HEIC/HEIF peuvent ne pas être
+  // prévisualisables par le navigateur.
+  if(!f.type.includes("heic") && !f.type.includes("heif")){
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+      preview.src = e.target.result;
+
+      preview.style.display = "block";
+
+    };
+
+    reader.onerror = function(){
+
+      preview.style.display = "none";
+
+    };
+
+    reader.readAsDataURL(f);
+  }
+
+});
+
+
+// ENVOI DE L'INSCRIPTION
+document.getElementById("submitRegistration").onclick = async function(){
+
+  const btn =
+    document.getElementById("submitRegistration");
+
+  const f =
+    paymentProof.files[0];
+
+
+  // Aucune preuve
+  if(!f){
+
+    fileError.textContent =
+      "Veuillez ajouter la capture d'écran de votre paiement.";
+
+    fileError.style.display = "block";
+
+    return;
+  }
+
+
+  // Vérification taille
+  if(f.size > 10 * 1024 * 1024){
+
+    fileError.textContent =
+      "La capture est trop grande. Maximum 10 Mo.";
+
+    fileError.style.display = "block";
+
+    return;
+  }
+
+
+  // Désactiver le bouton pendant l'envoi
+  btn.disabled = true;
+
+  btn.textContent =
+    "Envoi en cours...";
+
+
+  try{
+
+    // Connexion anonyme Supabase
+    let s =
+      await client.auth.getSession();
+
+
+    if(!s.data.session){
+
+      let a =
+        await client.auth.signInAnonymously();
+
+      if(a.error){
+        throw a.error;
+      }
+    }
+
+
+    // ID unique du dossier
+    const id =
+      crypto.randomUUID();
+
+
+    // Extension du fichier
+    const ext =
+      (f.name.split(".").pop() || "jpg")
+      .toLowerCase();
+
+
+    const path =
+      id + "/preuve." + ext;
+
+
+    // ENVOI DE LA PREUVE
+    let up =
+      await client.storage
+      .from("payment-proofs")
+      .upload(
+        path,
+        f,
+        {
+          contentType:
+            f.type || "application/octet-stream",
+          upsert:false
+        }
+      );
+
+
+    if(up.error){
+      throw up.error;
+    }
+
+
+    // DONNÉES DU DOSSIER
+    const dossier = {
+
+      id:id,
+
+      category:
+        document.getElementById("category").value,
+
+      full_name:
+        document.getElementById("fullName")
+        .value
+        .trim(),
+
+      birth_date:
+        document.getElementById("birthDate").value,
+
+      phone:
+        document.getElementById("phone")
+        .value
+        .trim(),
+
+      email:
+        document.getElementById("email")
+        .value
+        .trim(),
+
+      position:
+        document.getElementById("position").value,
+
+      foot:
+        document.getElementById("foot").value,
+
+      club:
+        document.getElementById("club")
+        .value
+        .trim() || null,
+
+      payment_amount:1000,
+
+      payment_number:"93699343",
+
+      payment_account:"Celtics",
+
+      proof_path:path,
+
+      status:"En attente"
+
+    };
+
+
+    // ENREGISTREMENT DANS SUPABASE
+    let ins =
+      await client
+      .from("dossiers")
+      .insert(dossier);
+
+
+    if(ins.error){
+
+      // Supprimer la preuve si l'inscription échoue
+      await client.storage
+      .from("payment-proofs")
+      .remove([path]);
+
+      throw ins.error;
+    }
+
+
+    // SEULEMENT MAINTENANT → ÉTAPE 3
+    showStep(3);
+
+
+  }catch(e){
+
+    console.error(e);
+
+    fileError.textContent =
+      "Erreur lors de l'envoi : " +
+      (e.message || "Veuillez réessayer.");
+
+    fileError.style.display = "block";
+
+    btn.disabled = false;
+
+    btn.textContent =
+      "Envoyer mon inscription →";
+  }
+
+};
+
 </script>
+
 </body>
 </html>
